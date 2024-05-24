@@ -6,6 +6,7 @@ services:
 
   db:
     image: mysql
+    container_name: ${CONTAINER_NAME}
     restart: always
     ports:
       - 3306:3306

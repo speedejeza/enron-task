@@ -15,7 +15,7 @@ Data source: http://www.ahschulz.de/enron-email-data/
 **Start MySQL Docker Container**
 ```zsh
 docker compose up -d
-docker exec -i enron-task-db-1 sh -c 'exec mysql -u user -p"password" enron' < ./data/enron-mysqldum_v5.sql
+docker exec -i $CONTAINER_NAME sh -c 'exec mysql -u user -p"password" enron' < ./data/enron-mysqldum_v5.sql
 ```
 python3 -m venv .venv
 source .venv/bin/activate
