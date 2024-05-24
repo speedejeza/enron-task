@@ -15,8 +15,12 @@ Data source: http://www.ahschulz.de/enron-email-data/
 **Start MySQL Docker Container**
 ```zsh
 docker compose up -d
-docker exec -i $CONTAINER_NAME sh -c 'exec mysql -u user -p"password" enron' < ./data/enron-mysqldum_v5.sql
 ```
+This will take a few minutes for MySQL to restore the SQL Dump file.
+
+
+**Setup Virtual Environment**
+```zsh
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt

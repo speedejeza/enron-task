@@ -3,7 +3,8 @@
 ALTER TABLE message ADD FULLTEXT(subject,body);
 
 
-SELECT subject, body, MATCH (subject,body)
-AGAINST ("billionaire" IN NATURAL LANGUAGE MODE) as score, mid FROM message m 
-WHERE MATCH (subject,body)
-AGAINST ("billionaire" IN NATURAL LANGUAGE MODE);
+SELECT  mid, subject, body,
+	MATCH (subject,body) AGAINST ('"I love committing fraud. No one will ever find out"' IN NATURAL LANGUAGE MODE WITH QUERY EXPANSION) as score 
+FROM message m 
+WHERE 
+	MATCH (subject,body) AGAINST ('"I love committing fraud. No one will ever find out"' IN NATURAL LANGUAGE MODE WITH QUERY EXPANSION);
