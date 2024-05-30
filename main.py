@@ -1,6 +1,7 @@
 import os
-from dotenv import load_dotenv
 from fire import Fire
+from dotenv import load_dotenv
+from rich import print
 from src.search import MySQLSearch
 
 
@@ -15,7 +16,7 @@ def main(search_text: str, limit: int = 10):
     }
 
     searchobj = MySQLSearch(**db_config)
-    results = searchobj.search(search_text, limit)
+    results = searchobj.search(search_text, limit, "table")
     print(results)
 
 
