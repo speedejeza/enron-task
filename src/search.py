@@ -23,11 +23,16 @@ class Search(ABC):
 class MySQLSearch(Search):
     def __init__(
         self,
+        mode: str,
         host: str | None,
         user: str | None,
         password: str | None,
         database: str | None,
     ):
+        if mode not in ["boolean", "natural"]:
+            raise ValueError("Invalid mode. Choose either 'boolean' or 'natural'.")
+        self.mode = mode
+        
         self.cnx = mysql.connector.connect(
             host=host,
             user=user,
@@ -37,7 +42,11 @@ class MySQLSearch(Search):
         self.cursor = self.cnx.cursor(prepared=True)
 
     def search(self, text: str, limit: int = 10, output_format: str = "str"):
-        stmt = "SELECT * FROM message WHERE MATCH (subject,body) AGAINST (%s IN NATURAL LANGUAGE MODE);"
+        stmt = "SELECT mid, sender, subject, body FROM message WHERE MATCH (subject,body) AGAINST (%s" 
+        if self.mode == "boolean":
+            stmt += " IN BOOLEAN MODE);"
+        elif self.mode == "natural":
+            stmt += " IN NATURAL LANGUAGE MODE);"
         self.cursor.execute(stmt, (text,))
 
         if output_format == "str":
@@ -52,7 +61,6 @@ class MySQLSearch(Search):
         colours = ["red", "green", "blue", "yellow", "magenta", "cyan", "bright_black"]
         for i, column in enumerate(self.cursor.column_names):
             table.add_column(column, style=f"{colours[i % len(colours)]}")
-
 
         # Add rows to the table
         for result in results:

@@ -164,3 +164,4 @@ cython_debug/
 
 .DS_Store
 enron-mysqldum_v5.sql
+*.ipynb
