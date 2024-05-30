@@ -11,7 +11,7 @@ Searches through Enron's email data with the purpose of finding relevant (incrim
 
 
 ### Download SQL Dump file
-1. Download http://www.ahschulz.de/enron-email-data/
+1. Download the single sql file from http://www.ahschulz.de/enron-email-data/
 2. Place in `/data` folder
 
 
