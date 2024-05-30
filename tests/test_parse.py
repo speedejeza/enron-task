@@ -1,5 +1,5 @@
 import pytest
-from parse import parse_search_text
+from src.parse import parse_search_text
 
 def test_parse_search_text_phrases():
     search_text = '"energy trading" OR "california crisis"'
