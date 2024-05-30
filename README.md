@@ -2,7 +2,6 @@
 A command-line app with a single argument: `<search-text>` that outputs results as text.
 Searches through Enron's email data with the purpose of finding relevant (incriminating) information.
 
-Data source: http://www.ahschulz.de/enron-email-data/
 
 ## Setup 
 
@@ -10,16 +9,20 @@ Data source: http://www.ahschulz.de/enron-email-data/
 - Docker
 - Python >=3.10
 
-### Steps
 
-**Start MySQL Docker Container**
+### Download SQL Dump file
+1. Download http://www.ahschulz.de/enron-email-data/
+2. Place in `/data` folder
+
+
+### Start MySQL Docker Container
 ```zsh
 docker compose up -d
 ```
 This will take a few minutes for MySQL to restore the SQL Dump file.
 
 
-**Setup Virtual Environment**
+### Setup Virtual Environment
 ```zsh
 python3 -m venv .venv
 source .venv/bin/activate

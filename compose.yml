@@ -15,5 +15,5 @@ services:
       MYSQL_USER: ${USER}
       MYSQL_PASSWORD: ${PASSWORD}
     volumes:
-      - ./data/enron-mysqldum_v5.sql/:/docker-entrypoint-initdb.d/enron-mysqldum_v5.sql/
+      - ./data/:/docker-entrypoint-initdb.d/
       # Populate the database with the provided data
